@@ -62,8 +62,13 @@ vim.o.undodir = HOME .. '/.vim/tmp/undo//'     -- undo files
 vim.o.backupdir = HOME .. '/.vim/tmp/backup//' -- backups
 vim.o.directory = '/.vim/tmp/swap//'   -- swap files
 
-vim.o.background = 'dark'
-vim.cmd('colorscheme no-clown-fiesta')
+
+--require('github-theme').setup()
+
+
+vim.o.background = 'light'
+vim.cmd('colors slightlyclownish') 
+
 
 
 
@@ -79,6 +84,7 @@ vim.keymap.set('n', '<Leader>dc', ':lua require\'dap\'.continue()<CR>')
 vim.keymap.set('n', '<Leader>do', ':lua require\'dap\'.step_over()<CR>')
 vim.keymap.set('n', '<Leader>di', ':lua require\'dap\'.step_into()<CR>')
 vim.keymap.set('n', '<Leader>dx', ':lua require\'dap\'.terminate()<CR>')
+vim.keymap.set('n', '<Leader>dl', ':lua require\'dap\'.run_last()<CR>')
 vim.keymap.set('n', '<Leader>dr', ':lua require(\'dap.ext.vscode\').load_launchjs()<CR>')
 vim.keymap.set('n', '<Leader>tt', ':FloatermToggle<CR>')
 vim.keymap.set('n', '<Leader>tn', ':FloatermNew<CR>')
@@ -98,27 +104,17 @@ vim.keymap.set('n', '<Leader>rc', ':RustOpenCargo<CR>')
 vim.keymap.set('n', '<Leader>ga', ':GoCodeLenAct<CR>')
 vim.keymap.set('n', '<Leader>gt', ':GoTestFunc<CR>')
 vim.keymap.set('n', '<Leader>gd', ':GoDebug<CR>')
+vim.keymap.set('n', '<Leader>ge', ':GoIfErr<CR>')
 vim.keymap.set('n', '<Leader>z', ':e ~/.zshrc<CR>')
 
 local rt = require("rust-tools")
-local extension_path = HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.8.1'
-local codelldb_path = extension_path .. '/adapter/codelldb'
-local liblldb_path = extension_path .. '/lldb/lib/liblldb.dylib'  -- MacOS: This may be .dylib
+--local extension_path = HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.8.1'
+----local codelldb_path = extension_path .. '/adapter/codelldb'
+--local liblldb_path = extension_path .. '/lldb/lib/liblldb.dylib'  -- MacOS: This may be .dylib
+--local codelldb_path = '/Users/andrei/.local/share/nvim/mason/bin/codelldb'
 
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
 
-  dap = {adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)}
-  
-  
-})
+
 
 
 vim.g.loaded_netrw = 1
@@ -127,8 +123,9 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
--- empty setup using defaults
-require("nvim-tree").setup()
+
+require("mason").setup()
+
 
 -- OR setup with some options
 require("nvim-tree").setup({
@@ -147,6 +144,11 @@ require("nvim-tree").setup({
   filters = {
     dotfiles = true,
   },
+  git = {
+    enable = true,
+    ignore = false,
+    timeout = 500,
+  }
 })
 
 
@@ -235,7 +237,6 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 let g:floaterm_position='center'
-
 let g:rustfmt_autosave = 1
 '
 ]])
@@ -244,6 +245,43 @@ let g:rustfmt_autosave = 1
 require("dapui").setup()
 
 local dap = require('dap')
+
+
+local mason_registry = require("mason-registry")
+
+local codelldb_root = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/"
+local codelldb_path = codelldb_root .. "adapter/codelldb"
+local liblldb_path = codelldb_root .. "lldb/lib/liblldb.dylib"
+print(codelldb_path)
+--dap.adapters.rust = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
+
+
+
+dap.adapters.codelldb = {
+  type = 'server',
+  host = '127.0.0.1',
+  port = 13000
+}
+
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+
+  --dap = {adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)}
+  dap = {
+      adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+    }
+
+  
+})
+
+
 
 dap.adapters.go = {
   type = 'executable';
@@ -262,19 +300,19 @@ dap.adapters.lldb = {
   command = '/opt/homebrew/opt/llvm/bin/lldb-vscode', -- adjust as needed, must be absolute path
   name = 'lldb'
 }
-dap.adapters.codelldb = {
-  name='codelldb',
-  type = 'server',
-  port = "${port}",
-  executable = {
-    -- CHANGE THIS to your path!
-    command ='/Users/andrei/.local/share/nvim/mason/bin/codelldb', 
-    args = {"--port", "${port}"},
+--dap.adapters.codelldb = {
+  --name='codelldb',
+  --type = 'server',
+  --port = "${port}",
+  --executable = {
+    ---- CHANGE THIS to your path!
+    --command ='/Users/andrei/.local/share/nvim/mason/bin/codelldb', 
+    --args = {"--port", "${port}"},
 
-    -- On windows you may have to uncomment this:
-    -- detached = false,
-  }
-}
+    ---- On windows you may have to uncomment this:
+    ---- detached = false,
+  --}
+--}
 
 dap.configurations.go = {
   {
@@ -312,37 +350,39 @@ dap.configurations.python = {
     end;
   },
 }
-dap.configurations.cpp = {
-  {
-    name = 'Launch',
-    type = 'codelldb',
-    request = 'launch',
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-    args = {},
 
-    -- 💀
-    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-    --
-    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-    --
-    -- Otherwise you might get the following error:
-    --
-    --    Error on launch: Failed to attach to the target process
-    --
-    -- But you should be aware of the implications:
-    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-    -- runInTerminal = false,
-  },
-}
 
--- If you want to use this for Rust and C, add something like this:
+--dap.configurations.cpp = {
+  --{
+    --name = 'Launch',
+    --type = 'codelldb',
+    --request = 'launch',
+    --program = function()
+      --return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    --end,
+    --cwd = '${workspaceFolder}',
+    --stopOnEntry = false,
+    --args = {},
 
-dap.configurations.c = dap.configurations.cpp
-dap.configurations.rust = dap.configurations.cpp
+    ---- 💀
+    ---- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+    ----
+    ----    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+    ----
+    ---- Otherwise you might get the following error:
+    ----
+    ----    Error on launch: Failed to attach to the target process
+    ----
+    ---- But you should be aware of the implications:
+    ---- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+    ---- runInTerminal = false,
+  --},
+--}
+
+---- If you want to use this for Rust and C, add something like this:
+
+--dap.configurations.c = dap.configurations.cpp
+--dap.configurations.rust = dap.configurations.cpp
 
 require("nvim-dap-virtual-text").setup()
 require('gitsigns').setup()
@@ -357,5 +397,6 @@ cmp.event:on(
 
 
 
-require("mason").setup()
 
+
+require("gruvbox").setup({contrast = "hard"})

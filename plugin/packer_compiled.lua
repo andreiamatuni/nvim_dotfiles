@@ -104,6 +104,11 @@ _G.packer_plugins = {
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
+  edge = {
+    loaded = true,
+    path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/edge",
+    url = "https://github.com/sainnhe/edge"
+  },
   everforest = {
     loaded = true,
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/everforest",
@@ -118,6 +123,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/github-colors",
     url = "https://github.com/lourenci/github-colors"
+  },
+  ["github-nvim-theme"] = {
+    loaded = true,
+    path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/github-nvim-theme",
+    url = "https://github.com/projekt0n/github-nvim-theme"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
@@ -144,6 +154,13 @@ _G.packer_plugins = {
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["markdown-preview.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/andrei/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -154,15 +171,30 @@ _G.packer_plugins = {
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["melange-nvim"] = {
+    loaded = true,
+    path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/melange-nvim",
+    url = "https://github.com/savq/melange-nvim"
+  },
   nerdcommenter = {
     loaded = true,
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/nerdcommenter",
     url = "https://github.com/preservim/nerdcommenter"
   },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
+  },
   ["no-clown-fiesta.nvim"] = {
     loaded = true,
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/no-clown-fiesta.nvim",
     url = "https://github.com/aktersnurra/no-clown-fiesta.nvim"
+  },
+  ["nordic.nvim"] = {
+    loaded = true,
+    path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/nordic.nvim",
+    url = "https://github.com/AlexvZyl/nordic.nvim"
   },
   ["nvim-autopairs"] = {
     config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
@@ -230,6 +262,12 @@ _G.packer_plugins = {
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/ripgrep",
     url = "https://github.com/BurntSushi/ripgrep"
   },
+  ["rose-pine"] = {
+    config = { "\27LJ\2\ne\0\0\3\0\6\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\3\0009\0\4\0'\2\5\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\nsetup\14rose-pine\frequire\0" },
+    loaded = true,
+    path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/rose-pine",
+    url = "https://github.com/rose-pine/neovim"
+  },
   ["rust-tools.nvim"] = {
     loaded = true,
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
@@ -240,8 +278,13 @@ _G.packer_plugins = {
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/rust.vim",
     url = "https://github.com/rust-lang/rust.vim"
   },
+  ["slightlyclownish.nvim"] = {
+    loaded = true,
+    path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/slightlyclownish.nvim",
+    url = "/Users/andrei/.config/nvim/myPlugins/slightlyclownish.nvim"
+  },
   ["tabline.nvim"] = {
-    config = { "\27LJ\2\n�\3\0\0\5\0\r\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\5\0005\4\4\0=\4\6\0035\4\a\0=\4\b\3=\3\t\2B\0\2\0016\0\n\0009\0\v\0'\2\f\0B\0\2\1K\0\1\0�\1          set guioptions-=e \" Use showtabline in gui vim\n          set sessionoptions+=tabpages,globals \" store tabpages and globals in session\n        \bcmd\bvim\foptions\25component_separators\1\3\0\0\b\b\23section_separators\1\0\b\27max_bufferline_percent\3B\19show_tabs_only\1\20modified_italic\1\18modified_icon\a+ \23show_filename_only\1\15show_bufnr\1\18show_devicons\2\21show_tabs_always\2\1\3\0\0\b\b\1\0\1\venable\2\nsetup\ftabline\frequire\0" },
+    config = { "\27LJ\2\n�\3\0\0\5\0\r\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\5\0005\4\4\0=\4\6\0035\4\a\0=\4\b\3=\3\t\2B\0\2\0016\0\n\0009\0\v\0'\2\f\0B\0\2\1K\0\1\0�\1          set guioptions-=e \" Use showtabline in gui vim\n          set sessionoptions+=tabpages,globals \" store tabpages and globals in session\n        \bcmd\bvim\foptions\25component_separators\1\3\0\0\b\b\23section_separators\1\0\b\19show_tabs_only\1\20modified_italic\1\18modified_icon\a+ \23show_filename_only\1\15show_bufnr\1\18show_devicons\2\21show_tabs_always\2\27max_bufferline_percent\3B\1\3\0\0\b\b\1\0\1\venable\2\nsetup\ftabline\frequire\0" },
     loaded = true,
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/tabline.nvim",
     url = "https://github.com/kdheepak/tabline.nvim"
@@ -250,6 +293,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["tempus-themes-vim"] = {
+    loaded = true,
+    path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/tempus-themes-vim",
+    url = "https://gitlab.com/protesilaos/tempus-themes-vim"
+  },
+  ["tender.vim"] = {
+    loaded = true,
+    path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/tender.vim",
+    url = "https://github.com/jacoborus/tender.vim"
+  },
+  ["vim-deus"] = {
+    loaded = true,
+    path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/vim-deus",
+    url = "https://github.com/ajmwagar/vim-deus"
   },
   ["vim-floaterm"] = {
     loaded = true,
@@ -260,6 +318,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-paper"] = {
+    loaded = true,
+    path = "/Users/andrei/.local/share/nvim/site/pack/packer/start/vim-paper",
+    url = "https://gitlab.com/yorickpeterse/vim-paper"
   },
   ["vim-surround"] = {
     loaded = true,
@@ -274,14 +337,29 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Setup for: markdown-preview.nvim
+time([[Setup for markdown-preview.nvim]], true)
+try_loadstring("\27LJ\2\n=\0\0\2\0\4\0\0056\0\0\0009\0\1\0005\1\3\0=\1\2\0K\0\1\0\1\2\0\0\rmarkdown\19mkdp_filetypes\6g\bvim\0", "setup", "markdown-preview.nvim")
+time([[Setup for markdown-preview.nvim]], false)
+-- Config for: tabline.nvim
+time([[Config for tabline.nvim]], true)
+try_loadstring("\27LJ\2\n�\3\0\0\5\0\r\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\5\0005\4\4\0=\4\6\0035\4\a\0=\4\b\3=\3\t\2B\0\2\0016\0\n\0009\0\v\0'\2\f\0B\0\2\1K\0\1\0�\1          set guioptions-=e \" Use showtabline in gui vim\n          set sessionoptions+=tabpages,globals \" store tabpages and globals in session\n        \bcmd\bvim\foptions\25component_separators\1\3\0\0\b\b\23section_separators\1\0\b\19show_tabs_only\1\20modified_italic\1\18modified_icon\a+ \23show_filename_only\1\15show_bufnr\1\18show_devicons\2\21show_tabs_always\2\27max_bufferline_percent\3B\1\3\0\0\b\b\1\0\1\venable\2\nsetup\ftabline\frequire\0", "config", "tabline.nvim")
+time([[Config for tabline.nvim]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
--- Config for: tabline.nvim
-time([[Config for tabline.nvim]], true)
-try_loadstring("\27LJ\2\n�\3\0\0\5\0\r\0\0176\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\5\0005\4\4\0=\4\6\0035\4\a\0=\4\b\3=\3\t\2B\0\2\0016\0\n\0009\0\v\0'\2\f\0B\0\2\1K\0\1\0�\1          set guioptions-=e \" Use showtabline in gui vim\n          set sessionoptions+=tabpages,globals \" store tabpages and globals in session\n        \bcmd\bvim\foptions\25component_separators\1\3\0\0\b\b\23section_separators\1\0\b\27max_bufferline_percent\3B\19show_tabs_only\1\20modified_italic\1\18modified_icon\a+ \23show_filename_only\1\15show_bufnr\1\18show_devicons\2\21show_tabs_always\2\1\3\0\0\b\b\1\0\1\venable\2\nsetup\ftabline\frequire\0", "config", "tabline.nvim")
-time([[Config for tabline.nvim]], false)
+-- Config for: rose-pine
+time([[Config for rose-pine]], true)
+try_loadstring("\27LJ\2\ne\0\0\3\0\6\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\3\0009\0\4\0'\2\5\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\nsetup\14rose-pine\frequire\0", "config", "rose-pine")
+time([[Config for rose-pine]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

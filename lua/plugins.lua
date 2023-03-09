@@ -26,6 +26,9 @@ return require('packer').startup(function(use)
     use 'hrsh7th/vim-vsnip'
     use "rafamadriz/friendly-snippets"
 
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+
+
     use 'rust-lang/rust.vim'
 
 
@@ -115,6 +118,25 @@ return require('packer').startup(function(use)
     use 'sainnhe/everforest'
     use 'nvim-tree/nvim-web-devicons'
     use 'aktersnurra/no-clown-fiesta.nvim' 
+    use ({ 'projekt0n/github-nvim-theme', tag = 'v0.0.7' })
+    use 'sainnhe/edge'
+    use "https://gitlab.com/yorickpeterse/vim-paper"
+    use 'savq/melange-nvim'
+
+    use "EdenEast/nightfox.nvim"
+    use 'https://gitlab.com/protesilaos/tempus-themes-vim'
+    use 'AlexvZyl/nordic.nvim'
+    use({
+    'rose-pine/neovim',
+    as = 'rose-pine',
+    --config = function()
+        --require("rose-pine").setup()
+        --vim.cmd('colorscheme rose-pine')
+    --end
+    }) 
+    use 'ajmwagar/vim-deus'
+    use 'jacoborus/tender.vim'
+    use '~/.config/nvim/myPlugins/slightlyclownish.nvim'
 end)
 
 
