@@ -126,14 +126,14 @@ return require('packer').startup(function(use)
     use "EdenEast/nightfox.nvim"
     use 'https://gitlab.com/protesilaos/tempus-themes-vim'
     use 'AlexvZyl/nordic.nvim'
-    use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
+    --use({
+    --'rose-pine/neovim',
+    --as = 'rose-pine',
     --config = function()
         --require("rose-pine").setup()
         --vim.cmd('colorscheme rose-pine')
     --end
-    }) 
+    --}) 
     use 'ajmwagar/vim-deus'
     use 'jacoborus/tender.vim'
     use '~/.config/nvim/myPlugins/slightlyclownish.nvim'
